@@ -8,6 +8,7 @@ comes with significant speed improvement compared to other libraries.
 
 ### How to install GMP on Apline Linux
 ```shell
+RUN apk add --update --no-cache gmp
 RUN apk add --update --no-cache --virtual .phpize-deps $PHPIZE_DEPS autoconf g++ make gmp-dev && \
     docker-php-ext-install gmp && \
     apk del .phpize-deps $PHPIZE_DEPS autoconf g++ make gmp-dev
