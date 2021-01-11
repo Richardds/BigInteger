@@ -1,11 +1,13 @@
 {
     "name": "richardds/big-integer",
     "description": "Library for big integer manipulation",
+    "type": "library",
     "keywords": [
         "Math",
-        "BigInteger"
+        "BigInteger",
+        "BigDecimal",
+        "BigNumber"
     ],
-    "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
         {
