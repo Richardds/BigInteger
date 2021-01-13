@@ -298,7 +298,7 @@ class BigInteger
         return new BigInteger(gmp_powm(
             $this->gmp,
             $exponent instanceof BigInteger ? $exponent->gmp : $exponent,
-                $modulus instanceof BigInteger ? $modulus->gmp : $modulus
+            $modulus instanceof BigInteger ? $modulus->gmp : $modulus
             )
         );
     }
@@ -329,7 +329,6 @@ class BigInteger
 
     public function gcd($rhs): BigInteger
     {
-        return new BigInteger(gmp_gcd($this->gmp, $rhs));
+        return new BigInteger(gmp_gcd($this->gmp, $rhs instanceof BigInteger ? $rhs->gmp : $rhs));
     }
-
 }
