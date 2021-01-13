@@ -9,25 +9,29 @@ use LogicException;
 class BigInteger
 {
     /**
+     * Number zero cache variable
      * @var GMP|resource
      */
     private static $gmp_zero = null;
 
     /**
+     * Number one cache variable
      * @var GMP|resource
      */
     private static $gmp_one = null;
 
     /**
-     * GMP resource
+     * GMP library handle
      * @var GMP|resource
      */
     protected $gmp = null;
 
     /**
      * @param string|int $value A string representation of the number
-     * @param int $base If 0, the base is determined by the GMP library
-     * @return BigInteger
+     * @param int        $base  If 0, the base is determined by the GMP library
+     *
+     * @return BigInteger       BigInteger representation of given value
+     *
      * @throws LogicException
      */
     public static function from($value, int $base = 10): BigInteger
@@ -42,8 +46,9 @@ class BigInteger
     }
 
     /**
-     * @param string $buffer
-     * @param bool $reverse
+     * @param string $buffer  Buffer containing the number
+     * @param bool   $reverse Reverse bytes order before evaluating to the number
+     *
      * @return BigInteger
      */
     public static function fromBuffer(string $buffer, bool $reverse = true): BigInteger
@@ -79,7 +84,8 @@ class BigInteger
     /**
      * Calculate factorial
      * @param int $factorial
-     * @return BigInteger Factorial
+     *
+     * @return BigInteger
      */
     public static function factorial(int $factorial): BigInteger
     {
@@ -88,7 +94,7 @@ class BigInteger
 
     /**
      * BigInteger constructor.
-     * @param GMP|resource $gmp_number GMP resource
+     * @param GMP|resource $gmp_number GMP library handle
      */
     private function __construct(GMP $gmp_number)
     {
@@ -115,8 +121,8 @@ class BigInteger
     }
 
     /**
-     * @param bool $reverse
-     * @return string Buffer representing the number value
+     * @param  bool   $reverse Reverse bytes order before returning
+     * @return string          Buffer representing the number value
      */
     public function toBuffer(bool $reverse = true): string
     {
@@ -137,7 +143,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return int A positive value if $this &gt; $rhs, zero if $this = $rhs and a negative value if $this &lt; $rhs
      */
     public function compare($rhs): int
@@ -146,7 +153,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return bool True if the number is less than $rhs
      */
     public function lessThan($rhs): bool
@@ -155,7 +163,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return bool True if the number is equal or less than $rhs
      */
     public function lessThanEqual($rhs): bool
@@ -164,7 +173,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return bool True if the number is equal to $rhs
      */
     public function equal($rhs): bool
@@ -173,7 +183,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return bool True if the number is greater than $rhs
      */
     public function greaterThan($rhs): bool
@@ -182,7 +193,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return bool True if the number is equal or greater than $rhs
      */
     public function greaterThanEqual($rhs): bool
@@ -191,9 +203,10 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $left
-     * @param BigInteger|int|string $right
-     * @param bool $exclusive If True the interval is exclusive ($left, $right)
+     * @param BigInteger|string|int $left
+     * @param BigInteger|string|int $right
+     * @param bool                  $exclusive If True the interval is exclusive ($left, $right)
+     *
      * @return bool True if the number is between the interval [$left, $right]
      */
     public function between($left, $right, bool $exclusive = false): bool
@@ -205,7 +218,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return BigInteger Addition result
      */
     public function add($rhs): BigInteger
@@ -214,7 +228,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return BigInteger Subtraction result
      */
     public function sub($rhs): BigInteger
@@ -223,7 +238,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return BigInteger Multiple
      */
     public function mul($rhs): BigInteger
@@ -232,8 +248,9 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
-     * @param int $round
+     * @param BigInteger|string|int $rhs
+     * @param int                   $round
+     *
      * @return BigInteger The proportion to $rhs
      */
     public function div($rhs, int $round = 0): BigInteger
@@ -245,8 +262,9 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
-     * @param int $round
+     * @param BigInteger|string|int $rhs
+     * @param int                   $round
+     *
      * @return BigInteger The quotient after division by $rhs
      */
     public function div_q($rhs, int $round = 0): BigInteger
@@ -258,8 +276,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
-     * @param int $round
+     * @param BigInteger|string|int $rhs
+     * @param int                   $round
      * @return BigInteger The remainder after division by $rhs
      */
     public function div_r($rhs, int $round = 0): BigInteger
@@ -271,7 +289,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $rhs
+     * @param BigInteger|string|int $rhs
+     *
      * @return BigInteger The remainder after division by $rhs
      */
     public function mod($rhs): BigInteger
@@ -280,7 +299,8 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $exponent
+     * @param BigInteger|string|int $exponent
+     *
      * @return BigInteger Power to exponent
      */
     public function pow($exponent): BigInteger
@@ -289,8 +309,9 @@ class BigInteger
     }
 
     /**
-     * @param BigInteger|int|string $exponent
-     * @param BigInteger|int|string $modulus
+     * @param BigInteger|string|int $exponent
+     * @param BigInteger|string|int $modulus
+     *
      * @return BigInteger Power to exponent in modulo
      */
     public function powMod($exponent, $modulus): BigInteger
@@ -327,6 +348,11 @@ class BigInteger
         return new BigInteger(gmp_neg($this->gmp));
     }
 
+    /**
+     * @param BigInteger|string|int $rhs
+     *
+     * @return BigInteger GCD of the number and given number
+     */
     public function gcd($rhs): BigInteger
     {
         return new BigInteger(gmp_gcd($this->gmp, $rhs instanceof BigInteger ? $rhs->gmp : $rhs));
