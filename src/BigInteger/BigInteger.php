@@ -133,13 +133,12 @@ class BigInteger
         }
 
         $buffer = pack('H*', $bytes_hex);
-        $buffer = ltrim($buffer, chr(0));
 
         if ($reverse) {
-            return strrev($buffer);
+            $buffer = strrev($buffer);
         }
 
-        return $buffer;
+        return ltrim($buffer, chr(0));
     }
 
     /**
