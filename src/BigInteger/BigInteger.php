@@ -96,7 +96,7 @@ class BigInteger
      * BigInteger constructor.
      * @param GMP|resource $gmp_number GMP library handle
      */
-    private function __construct(GMP $gmp_number)
+    protected function __construct(GMP $gmp_number)
     {
         $this->gmp = $gmp_number;
     }
