@@ -1,7 +1,7 @@
-# BigInteger
-OOP PHP library for fast big integer manipulation made as a wrapper around GMP library.
-The library is not converting the numbers into a string but uses GMP resource, which
-comes with significant speed improvement compared to other libraries.
+# BigInteger ![MIT Licence](https://img.shields.io/github/license/richardds/BigInteger) <a href="http://github.com/richardds/BigInteger/issues" target="_blank">![Github Issues](https://img.shields.io/github/issues/richardds/BigInteger.svg)</a>
+PHP OOP library for fast big integer manipulation made as a wrapper around GMP library.
+The library is not converting the numbers into a string but uses GMP resources, which
+comes with significant speed improvement compared to other libraries. The library has no external dependencies.
 ### General requirements
 - `php-7.2` and higher
 - `php-gmp` library
@@ -33,7 +33,7 @@ $z = BigInteger::fromString("<big_integer>");
 $x = $g->powMod($p, $m)
        ->mul($z->sub(BigInteger::one()))
        ->mod($m);
-       
+
 $a = BigInteger::fromString("<big_integer>");
 $b = BigInteger::fromString("<big_integer>");
 $gcd = $a->gcd($b);
